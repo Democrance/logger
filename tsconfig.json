@@ -1,5 +1,5 @@
 {
-	"extends": "@vue/tsconfig/tsconfig.node.json",
+	"extends": "@vue/tsconfig/tsconfig.web.json",
     "include": [
         "env.d.ts",
         "./lib/*.ts"
@@ -15,16 +15,11 @@
         "module": "ESNext",
         "strict": false,
         "pretty": true,
-        "allowJs": true,
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "importHelpers": true,
         "importsNotUsedAsValues": "error",
         "isolatedModules": true,
-        "skipLibCheck": true,
-        "types": [
-            "node",
-            "unbuild",
-        ]
+        "skipLibCheck": true
     },
 }
