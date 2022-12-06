@@ -1,4 +1,4 @@
-import type { DMCLogger } from './types'
+import type { DMCLogger, LoggerImplementation } from './types'
 
 import defaultLogger from './defaultLogger'
 import { noop } from './utils'
@@ -20,8 +20,6 @@ const defaultModes = {
 } as const
 
 let Logger: DMCLogger = defaultLogger
-
-type LoggerImplementation = DMCLogger | ((verbosity: string) => DMCLogger)
 
 const registerLogger = (loggerImplementation: LoggerImplementation, verbosity: string) => {
     if (typeof loggerImplementation === 'function') {

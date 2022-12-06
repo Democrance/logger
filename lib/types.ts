@@ -5,6 +5,8 @@ export interface DMCLogger {
     error(message?: any, ...args: any): void
 }
 
+export type LoggerImplementation = DMCLogger | ((verbosity: string) => DMCLogger)
+
 export enum LogName {
     Error = 'error',
     Info = 'info',
