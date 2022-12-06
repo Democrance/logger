@@ -1,4 +1,4 @@
-export type LogMessage = string[] | Error | Record<string, any> | string | boolean
+import type { LogMessage } from './types'
 
 export const noop = () => {}
 
