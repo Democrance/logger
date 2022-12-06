@@ -8,8 +8,8 @@ const defaultModes = {
     test: 'none',
 
     // Development
-    dev: 'warn',
-    development: 'warn',
+    dev: 'info',
+    development: 'info',
 
     // Production
     prod: 'error',
