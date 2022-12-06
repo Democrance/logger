@@ -19,13 +19,11 @@ const defaultModes = {
     default: 'warn',
 } as const
 
-let Logger: DMCLogger = defaultLogger
-
 const registerLogger = (loggerImplementation: LoggerImplementation, verbosity: string) => {
-    if (typeof loggerImplementation === 'function') {
-        Logger = loggerImplementation(verbosity)
-        return
-    }
+    let Logger: DMCLogger
+
+    if (typeof loggerImplementation === 'function')
+        return loggerImplementation(verbosity)
 
     switch (verbosity) {
         case 'info':
@@ -66,9 +64,14 @@ const registerLogger = (loggerImplementation: LoggerImplementation, verbosity: s
                 ...loggerImplementation,
             }
     }
+
+    return Logger
 }
 
-registerLogger(defaultLogger, defaultModes[detectBundler()] || defaultModes.default)
+const Logger = registerLogger(
+    defaultLogger,
+    defaultModes[detectBundler()] || defaultModes.default,
+)
 
 export {
     Logger,

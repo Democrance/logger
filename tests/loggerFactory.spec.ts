@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { Logger, registerLogger } from '../lib'
+import { registerLogger } from '../lib'
 
 const testLogger = {
     debug: () => 'debug',
@@ -10,12 +10,12 @@ const testLogger = {
 }
 
 describe('[CORE - utils] registerLogger', () => {
-    // beforeEach(() => {
-    //     jest.clearAllMocks()
-    // })
+    beforeEach(() => {
+        vi.clearAllMocks()
+    })
 
     it('registers logger with info verbosity', () => {
-        registerLogger(testLogger, 'info')
+        const Logger = registerLogger(testLogger, 'info')
 
         expect(Logger.info()).toEqual('info')
         expect(Logger.warn()).toEqual('warn')
@@ -24,7 +24,7 @@ describe('[CORE - utils] registerLogger', () => {
     })
 
     it('registers logger with debug verbosity', () => {
-        registerLogger(testLogger, 'debug')
+        const Logger = registerLogger(testLogger, 'debug')
 
         expect(Logger.info()).toEqual('info')
         expect(Logger.warn()).toEqual('warn')
@@ -33,7 +33,7 @@ describe('[CORE - utils] registerLogger', () => {
     })
 
     it('registers logger with warn verbosity', () => {
-        registerLogger(testLogger, 'warn')
+        const Logger = registerLogger(testLogger, 'warn')
 
         expect(Logger.info()).toEqual(undefined)
         expect(Logger.warn()).toEqual('warn')
@@ -42,7 +42,7 @@ describe('[CORE - utils] registerLogger', () => {
     })
 
     it('registers logger with error verbosity', () => {
-        registerLogger(testLogger, 'error')
+        const Logger = registerLogger(testLogger, 'error')
 
         expect(Logger.info()).toEqual(undefined)
         expect(Logger.warn()).toEqual(undefined)
@@ -51,7 +51,7 @@ describe('[CORE - utils] registerLogger', () => {
     })
 
     it('registers logger with none verbosity', () => {
-        registerLogger(testLogger, 'none')
+        const Logger = registerLogger(testLogger, 'none')
 
         expect(Logger.info()).toEqual(undefined)
         expect(Logger.warn()).toEqual(undefined)
@@ -66,7 +66,7 @@ describe('[CORE - utils] registerLogger', () => {
             warn: () => `${verbosity}-warn`,
             error: () => `${verbosity}-error`,
         })
-        registerLogger(logger, 'custom-verbose')
+        const Logger = registerLogger(logger, 'custom-verbose')
 
         expect(Logger.info()).toEqual('custom-verbose-info')
         expect(Logger.warn()).toEqual('custom-verbose-warn')
