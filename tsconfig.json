@@ -2,8 +2,7 @@
 	"extends": "@vue/tsconfig/tsconfig.node.json",
     "include": [
         "env.d.ts",
-        "./lib/*.ts",
-        "./bin/*.ts",
+        "./lib/*.ts"
     ],
     "exclude": [
         "dist",
@@ -25,10 +24,7 @@
         "skipLibCheck": true,
         "types": [
             "node",
-
-            "defu",
             "unbuild",
-            "cosmiconfig"
         ]
     },
 }
