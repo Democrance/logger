@@ -1,7 +1,7 @@
 import type { DMCLogger, LoggerImplementation } from './types'
 
 import defaultLogger from './defaultLogger'
-import { noop } from './utils'
+import { detectBundler, noop } from './utils'
 
 const defaultModes = {
     // Test
@@ -68,7 +68,7 @@ const registerLogger = (loggerImplementation: LoggerImplementation, verbosity: s
     }
 }
 
-registerLogger(defaultLogger, defaultModes[process.env.NODE_ENV] || defaultModes.default)
+registerLogger(defaultLogger, defaultModes[detectBundler()] || defaultModes.default)
 
 export {
     Logger,

@@ -2,6 +2,16 @@ export type LogMessage = string[] | Error | Record<string, any> | string | boole
 
 export const noop = () => {}
 
+export const detectBundler = () => {
+    try {
+        if (import.meta.env)
+            return import.meta.env.MODE
+    }
+    catch {
+        return process.env.NODE_ENV
+    }
+}
+
 export const getMessage = (message: LogMessage): string | undefined => {
     if (Array.isArray(message))
         return message.join(' | ')
@@ -15,7 +25,7 @@ export const getMessage = (message: LogMessage): string | undefined => {
 
 export const detectNode: boolean = Object.prototype
     .toString
-    .call(typeof process !== 'undefined' ? process : 0) === '[object process]' || process.env.APPLICATION_ENV === 'production'
+    .call(typeof process !== 'undefined' ? process : 0) === '[object process]' || detectBundler() === 'production'
 
 export const mountLog = (name: string, style: string) => {
     if (detectNode)
