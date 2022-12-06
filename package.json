@@ -10,9 +10,20 @@
     "license": "MIT",
     "author": "Daniil Chumachenko <daniil4udo@gmail.com>",
     "type": "module",
+    "exports": {
+        ".": {
+            "require": "./dist/index.cjs",
+            "import": "./dist/index.mjs"
+        }
+    },
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
     "scripts": {
         "build": "rm -rf dist && unbuild",
-        "lint": "eslint --ext .vue,.ts,.js,.mjs .",
+        "lint": "eslint --ext .vue,.ts,.js .",
         "test": "vitest"
     },
     "devDependencies": {
