@@ -4,11 +4,10 @@ export const noop = () => {}
 
 export const detectBundler = () => {
     try {
-        if (import.meta.env)
-            return import.meta.env.MODE
+        return import.meta.env?.MODE
     }
     catch {
-        return process.env.NODE_ENV
+        return process.env?.NODE_ENV
     }
 }
 
