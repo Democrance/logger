@@ -37,13 +37,13 @@
         "unbuild": "^1.0.2",
         "vitest": "^0.25.5"
     },
+    "packageManager": "pnpm@7.18.1",
     "engines": {
         "node": ">=14"
     },
     "pnpm": {
         "overrides": {
-            "rollup": "^3.0.0",
-            "uuid": "^8.0.0"
+            "rollup": "^3.0.0"
         }
     }
 }
